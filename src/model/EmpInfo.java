@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.awt.Image;
+
 /**
  *
  * @author HELLY
@@ -20,7 +22,17 @@ public class EmpInfo {
     private String positionTitle;
     private int phoneNumber;
     private String email;
+    private Image Photo;
 
+    public Image getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(Image Photo) {
+        this.Photo = Photo;
+    }
+    
+    
     public String getName() {
         return name;
     }
