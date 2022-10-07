@@ -4,6 +4,7 @@
  */
 package ui;
 
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -198,6 +199,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        
         ReadJPanel readPanel = new ReadJPanel(database);
         ViewJPanel.setJPanel(readPanel);
         

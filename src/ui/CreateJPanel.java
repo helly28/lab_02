@@ -4,6 +4,8 @@
  */
 package ui;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 import model.EmpInfo;
 import model.EmpInfoDatabase;
@@ -121,6 +123,11 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         txtStartDate.setBackground(new java.awt.Color(245, 244, 250));
         txtStartDate.setFont(new java.awt.Font("Open Sans", 0, 16)); // NOI18N
+        txtStartDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStartDateActionPerformed(evt);
+            }
+        });
 
         txtLevel.setBackground(new java.awt.Color(245, 244, 250));
         txtLevel.setFont(new java.awt.Font("Open Sans", 0, 16)); // NOI18N
@@ -294,6 +301,8 @@ public class CreateJPanel extends javax.swing.JPanel {
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        
+        // Validation for all user input fields
         boolean keepAsking = true;
         
         while (keepAsking) {
@@ -304,14 +313,20 @@ public class CreateJPanel extends javax.swing.JPanel {
                     int EmployeeId = Integer.parseInt(txtID.getText());
                     int Age = Integer.parseInt(txtAge.getText());
                     String Gender = txtGender.getText();
-                    String StartDate = txtStartDate.getText();
+                    
+                    // Validation For Date Format
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/DD/YYYY");
+                    try{
+                            String StartDate = txtStartDate.getText();
+                            formatter.parse(StartDate);
+                    
+                   
+  
                     String Level = txtLevel.getText();
                     String TeamInfo = txtTeam.getText();
                     String Position = txtPosition.getText();
                     int Phone = Integer.parseInt(txtPhone.getText());
                     String Email = txtEmail.getText();
-
-
                     EmpInfo ei = database.addNewEmp();
 
                     ei.setName(name);
@@ -319,6 +334,7 @@ public class CreateJPanel extends javax.swing.JPanel {
                     ei.setAge(Age);
                     ei.setGender(Gender);
                     ei.setStartDate(StartDate);
+                    
                     ei.setLevel(Level);
                     ei.setTeamInfo(TeamInfo);
                     ei.setPositionTitle(Position);
@@ -337,6 +353,14 @@ public class CreateJPanel extends javax.swing.JPanel {
                     txtPosition.setText("");
                     txtPhone.setText("");
                     txtEmail.setText("");
+                    
+                    }
+                    catch(DateTimeParseException e){
+                        System.out.println("The exception is: " + e);
+                        JOptionPane.showMessageDialog(null, "Please provide a valid date format which is MM/DD/YYYY", null,
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    
         
         }
           catch(Exception e){
@@ -354,6 +378,20 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnUploadActionPerformed
+
+    private void txtStartDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateActionPerformed
+        // TODO add your handling code here:
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/DD/YYYY");
+        try{
+            String date = txtStartDate.getText();
+            formatter.parse(date);
+            System.out.println("ValidDate");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Invalid");
+        }
+    }//GEN-LAST:event_txtStartDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
