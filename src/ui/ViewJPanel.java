@@ -20,6 +20,10 @@ import model.EmpInfoDatabase;
  */
 public class ViewJPanel extends javax.swing.JPanel {
 
+    private static void setJPanel(ReadJPanel readPanel) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     /**
      * Creates new form ViewJPanel
      */
@@ -194,7 +198,10 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
+        ReadJPanel readPanel = new ReadJPanel(database);
+        ViewJPanel.setJPanel(readPanel);
         
+       
         int selectedRowIndex = tblEmpInfo.getSelectedRow();
         
         if (selectedRowIndex<0) {
@@ -204,24 +211,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = (DefaultTableModel) tblEmpInfo.getModel();
-        EmpInfo selectedEmpInfo = (EmpInfo) model.getValueAt(selectedRowIndex, 0);
-        
-        ReadJPanel readPanel = new ReadJPanel(database);
-        ViewJPanel.setJPanel(readPanel);
-        
-        txtName.setText(selectedEmpInfo.getName());
-        txtID.setText(String.valueOf(selectedEmpInfo.getEmployeeId()));
-        txtAge.setText(String.valueOf(selectedEmpInfo.getAge()));
-        txtGender.setText(String.valueOf(selectedEmpInfo.getGender()));
-        txtStartDate.setText(selectedEmpInfo.getStartDate());
-        txtLevel.setText(selectedEmpInfo.getLevel());
-        txtTeam.setText(selectedEmpInfo.getTeamInfo());
-        txtPosition.setText(selectedEmpInfo.getPositionTitle());
-        txtPhone.setText(selectedEmpInfo.getPhoneNumber());
-        txtEmail.setText(selectedEmpInfo.getEmail());
-        
-        
-          
+        EmpInfo selectedEmpInfo = (EmpInfo) model.getValueAt(selectedRowIndex, 0);   
     }//GEN-LAST:event_btnViewActionPerformed
 
 

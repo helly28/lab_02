@@ -4,12 +4,6 @@
  */
 package ui;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.EmpInfo;
 import model.EmpInfoDatabase;
@@ -23,10 +17,6 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
-    
-    EmpInfo empinfo;
-    private BufferedImage image;
-    private Image img;
     
     EmpInfoDatabase database;
     
@@ -304,44 +294,56 @@ public class CreateJPanel extends javax.swing.JPanel {
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-           
-        String name = txtName.getText();
-        int EmployeeId = Integer.parseInt(txtID.getText());
-        int Age = Integer.parseInt(txtAge.getText());
-        String Gender = txtGender.getText();
-        String StartDate = txtStartDate.getText();
-        String Level = txtLevel.getText();
-        String TeamInfo = txtTeam.getText();
-        String Position = txtPosition.getText();
-        int Phone = Integer.parseInt(txtPhone.getText());
-        String Email = txtEmail.getText();
+        boolean keepAsking = true;
         
-        EmpInfo ei = database.addNewEmp();
+        while (keepAsking) {
+                keepAsking = false;
+                    try {
+
+                    String name = txtName.getText();
+                    int EmployeeId = Integer.parseInt(txtID.getText());
+                    int Age = Integer.parseInt(txtAge.getText());
+                    String Gender = txtGender.getText();
+                    String StartDate = txtStartDate.getText();
+                    String Level = txtLevel.getText();
+                    String TeamInfo = txtTeam.getText();
+                    String Position = txtPosition.getText();
+                    int Phone = Integer.parseInt(txtPhone.getText());
+                    String Email = txtEmail.getText();
+
+
+                    EmpInfo ei = database.addNewEmp();
+
+                    ei.setName(name);
+                    ei.setEmployeeId(EmployeeId);
+                    ei.setAge(Age);
+                    ei.setGender(Gender);
+                    ei.setStartDate(StartDate);
+                    ei.setLevel(Level);
+                    ei.setTeamInfo(TeamInfo);
+                    ei.setPositionTitle(Position);
+                    ei.setPhoneNumber(Phone);
+                    ei.setEmail(Email);
+                    
+                    JOptionPane.showMessageDialog(this, "New Employee Information Added.");
         
-        ei.setName(name);
-        ei.setEmployeeId(EmployeeId);
-        ei.setAge(Age);
-        ei.setGender(Gender);
-        ei.setStartDate(StartDate);
-        ei.setLevel(Level);
-        ei.setTeamInfo(TeamInfo);
-        ei.setPositionTitle(Position);
-        ei.setPhoneNumber(Phone);
-        ei.setEmail(Email);
+                    txtName.setText("");
+                    txtID.setText("");
+                    txtAge.setText("");
+                    txtGender.setText("");
+                    txtStartDate.setText("");
+                    txtLevel.setText("");
+                    txtTeam.setText("");
+                    txtPosition.setText("");
+                    txtPhone.setText("");
+                    txtEmail.setText("");
         
-        JOptionPane.showMessageDialog(this, "New Employee Information Added.");
-        
-        txtName.setText("");
-        txtID.setText("");
-        txtAge.setText("");
-        txtGender.setText("");
-        txtStartDate.setText("");
-        txtLevel.setText("");
-        txtTeam.setText("");
-        txtPosition.setText("");
-        txtPhone.setText("");
-        txtEmail.setText("");
-    
+        }
+          catch(Exception e){
+            System.out.print("The exception is: " + e);
+            JOptionPane.showMessageDialog(null, "Please provide a valid input!", null, JOptionPane.ERROR_MESSAGE);
+                             }
+        }      
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed

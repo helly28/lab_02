@@ -4,6 +4,8 @@
  */
 package ui;
 
+import model.EmpInfoDatabase;
+
 /**
  *
  * @author HELLY
@@ -15,6 +17,22 @@ public class ReadJPanel extends javax.swing.JPanel {
      */
     public ReadJPanel() {
         initComponents();
+        
+        txtName.setText(selectedEmpInfo.getName());
+        txtID.setText(String.valueOf(selectedEmpInfo.getEmployeeId()));
+        txtAge.setText(String.valueOf(selectedEmpInfo.getAge()));
+        txtGender.setText(String.valueOf(selectedEmpInfo.getGender()));
+        txtStartDate.setText(selectedEmpInfo.getStartDate());
+        txtLevel.setText(selectedEmpInfo.getLevel());
+        txtTeam.setText(selectedEmpInfo.getTeamInfo());
+        txtPosition.setText(selectedEmpInfo.getPositionTitle());
+        txtPhone.setText(selectedEmpInfo.getPhoneNumber());
+        txtEmail.setText(selectedEmpInfo.getEmail());
+        
+    }
+
+    ReadJPanel(EmpInfoDatabase database) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
