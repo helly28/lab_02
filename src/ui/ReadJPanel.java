@@ -15,23 +15,22 @@ public class ReadJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ReadJPanel
      */
-    public ReadJPanel() {
+    
+    EmpInfoDatabase empInfodatabase;
+    
+    public ReadJPanel(viewJPanel) {
+        this.viewJPanel = viewJPanel;
         initComponents();
         
-        txtName.setText(selectedEmpInfo.getName());
-        txtID.setText(String.valueOf(selectedEmpInfo.getEmployeeId()));
-        txtAge.setText(String.valueOf(selectedEmpInfo.getAge()));
-        txtGender.setText(String.valueOf(selectedEmpInfo.getGender()));
-        txtStartDate.setText(selectedEmpInfo.getStartDate());
-        txtLevel.setText(selectedEmpInfo.getLevel());
-        txtTeam.setText(selectedEmpInfo.getTeamInfo());
-        txtPosition.setText(selectedEmpInfo.getPositionTitle());
-        txtPhone.setText(selectedEmpInfo.getPhoneNumber());
-        txtEmail.setText(selectedEmpInfo.getEmail());
+        readProfile();
         
     }
 
     ReadJPanel(EmpInfoDatabase database) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    ReadJPanel() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -189,7 +188,20 @@ public class ReadJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    // function readProfile
+    
+    public void readProfile(){
+                    String name = txtName.getText();
+                    int EmployeeId = Integer.parseInt(txtID.getText());
+                    int Age = Integer.parseInt(txtAge.getText());
+                    String Gender = txtGender.getText();
+                    String StartDate = txtStartDate.getText();
+                    String Level = txtLevel.getText();
+                    String TeamInfo = txtTeam.getText();
+                    String Position = txtPosition.getText();
+                    int Phone = Integer.parseInt(txtPhone.getText());
+                    String Email = txtEmail.getText(); 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblEmail;
