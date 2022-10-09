@@ -4,11 +4,18 @@
  */
 package ui;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import model.EmpInfo;
 import model.EmpInfoDatabase;
 
@@ -21,6 +28,10 @@ public class CreateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CreateJPanel
      */
+    
+    EmpInfo empinfo;
+    private BufferedImage image;
+    private Image img;
     
     EmpInfoDatabase database;
     
@@ -280,13 +291,10 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -353,12 +361,13 @@ public class CreateJPanel extends javax.swing.JPanel {
                         break;
                     }
                     
+                    
                     /*else {
                         JOptionPane.showMessageDialog(null, "Please provide a valid email", null,
                                 JOptionPane.ERROR_MESSAGE);
                         break;
                     }*/
-                    
+                    empinfo.setPhoto(ImageIcon);
                     
                     EmpInfo ei = database.addNewEmp();
 
@@ -373,6 +382,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                     ei.setPositionTitle(Position);
                     ei.setPhoneNumber(Phone);
                     ei.setEmail(Email);
+                    ei.setPhoto((ImageIcon) lblImg.getIcon());
+                    
                     
                     JOptionPane.showMessageDialog(this, "New Employee Information Added.");
         
@@ -386,6 +397,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                     txtPosition.setText("");
                     txtPhone.setText("");
                     txtEmail.setText("");
+                   
+                   
                     
                    
                    /* }
@@ -419,6 +432,27 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadActionPerformed
         // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("4 Extension Supported", "jpeg", "png", "jpg");
+        fileChooser.setFileFilter(filter);
+        int selected = fileChooser.showOpenDialog(null);
+        if(selected == JFileChooser.APPROVE_OPTION){
+            File f = fileChooser.getSelectedFile();
+            String getSelectedImage = f.getAbsolutePath();
+              ImageIcon imgIco = new ImageIcon(getSelectedImage);
+              lblImg.setIcon(imgIco);
+        }
+        
+           /*
+           chooser.showOpenDialog(null);
+           File f = chooser.getSelectedFile();
+           
+           try{
+               image = ImageIO.read(f);
+               img = image.getScaledInstance(150, 150, 150);
+            } catch (IOException ex) {
+                
+            }*/
         
     }//GEN-LAST:event_btnUploadActionPerformed
 

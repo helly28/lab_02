@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -22,6 +23,8 @@ public class ViewJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewJPanel
      */
+    
+    EmpInfo empinfo;
     
     EmpInfoDatabase database;
     
@@ -526,8 +529,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         Gender.setText(String.valueOf(selectedEmpInfo.getGender()));
         TeamInfo.setText(String.valueOf(selectedEmpInfo.getTeamInfo()));
         Phone.setText(String.valueOf(selectedEmpInfo.getPhoneNumber()));
-        Email.setText(String.valueOf(selectedEmpInfo.getEmail()));    
-        
+        Email.setText(String.valueOf(selectedEmpInfo.getEmail()));
+        ImageIcon imageicon = new ImageIcon(empinfo.getPhoto());
+        lblImg.setIcon(imageicon);        
     }//GEN-LAST:event_btnViewActionPerformed
 
 
